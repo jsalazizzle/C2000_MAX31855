@@ -1,0 +1,1 @@
+"./sci_ex1_echoback.obj" "./uart_if.obj" "./device/device.obj" "./device/f28004x_codestartbranch.obj" "../28004x_generic_ram_lnk.cmd" "../driverlib.lib" -llibc.a 
