@@ -85,13 +85,13 @@ InitTerm()
     SCI_setConfig(SCIA_BASE, DEVICE_LSPCLK_FREQ, 115200, (SCI_CONFIG_WLEN_8 |
                                                         SCI_CONFIG_STOP_ONE |
                                                         SCI_CONFIG_PAR_NONE));
-    //SCI_resetChannels(SCIA_BASE);
-    //SCI_resetRxFIFO(SCIA_BASE);
-    //SCI_resetTxFIFO(SCIA_BASE);
-    //SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_TXFF | SCI_INT_RXFF);
+    SCI_resetChannels(SCIA_BASE);
+    SCI_resetRxFIFO(SCIA_BASE);
+    SCI_resetTxFIFO(SCIA_BASE);
+    SCI_clearInterruptStatus(SCIA_BASE, SCI_INT_TXFF | SCI_INT_RXFF);
     //SCI_enableFIFO(SCIA_BASE);
-    //SCI_enableModule(SCIA_BASE);
-    //SCI_performSoftwareReset(SCIA_BASE);
+    SCI_enableModule(SCIA_BASE);
+    SCI_performSoftwareReset(SCIA_BASE);
 #endif
   __Errorlog = 0;
 }
@@ -181,9 +181,7 @@ GetCmd(char *pcBuffer, unsigned int uiBufLen)
     //
     while(SCI_isDataAvailableNonFIFO(SCIA_BASE) == false)
     {
-#if defined(USE_FREERTOS) || defined(USE_TI_RTOS)
-    	osi_Sleep(1);
-#endif
+
     }
     cChar = SCI_readCharNonBlocking(SCIA_BASE);
     
@@ -229,9 +227,7 @@ GetCmd(char *pcBuffer, unsigned int uiBufLen)
         //
         while(SCI_isDataAvailableNonFIFO(SCIA_BASE) == false)
         {
-#if defined(USE_FREERTOS) || defined(USE_TI_RTOS)
-        	osi_Sleep(1);
-#endif
+
         }
         cChar = SCI_readCharNonBlocking(SCIA_BASE);
         //
@@ -297,29 +293,29 @@ int TrimSpace(char * pcInput)
 //*****************************************************************************
 int Report(const char *pcFormat, ...)
 {
- int iRet = 0;
-#ifndef NOTERM
+    int iRet = 0;
+    #ifndef NOTERM
 
-  char *pcBuff, *pcTemp;
-  int iSize = 256;
+    char *pcBuff, *pcTemp;
+    int iSize = 256;
  
-  va_list list;
-  pcBuff = (char*)malloc(iSize);
-  if(pcBuff == NULL)
-  {
-      return -1;
-  }
-  while(1)
-  {
-      va_start(list,pcFormat);
-      iRet = vsnprintf(pcBuff,iSize,pcFormat,list);
-      va_end(list);
-      if(iRet > -1 && iRet < iSize)
-      {
+    va_list list;
+    pcBuff = (char*)malloc(iSize);
+    if(pcBuff == NULL)
+    {
+        return -1;
+    }
+    while(1)
+    {
+        va_start(list,pcFormat);
+        iRet = vsnprintf(pcBuff,iSize,pcFormat,list);
+        va_end(list);
+        if(iRet > -1 && iRet < iSize)
+        {
           break;
-      }
-      else
-      {
+        }
+        else
+        {
           iSize*=2;
           if((pcTemp=realloc(pcBuff,iSize))==NULL)
           { 
@@ -332,11 +328,11 @@ int Report(const char *pcFormat, ...)
               pcBuff=pcTemp;
           }
           
-      }
-  }
-  Message(pcBuff);
-  free(pcBuff);
+        }
+    }
+    Message(pcBuff);
+    free(pcBuff);
   
-#endif
-  return iRet;
+    #endif
+    return iRet;
 }

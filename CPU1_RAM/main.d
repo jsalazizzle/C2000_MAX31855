@@ -78,7 +78,6 @@ main.obj: C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/spi.h
 main.obj: C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/inc/hw_spi.h
 main.obj: C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/version.h
 main.obj: C:/Users/salaz/workspace_v8/v4/device/device.h
-main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stddef.h
 main.obj: ../uart_if.h
 main.obj: ../MAX31855.h
 
@@ -160,6 +159,5 @@ C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/spi.h:
 C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/inc/hw_spi.h: 
 C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/version.h: 
 C:/Users/salaz/workspace_v8/v4/device/device.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stddef.h: 
 ../uart_if.h: 
 ../MAX31855.h: 

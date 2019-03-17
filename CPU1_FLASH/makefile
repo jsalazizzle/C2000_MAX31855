@@ -10,6 +10,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./MAX31855.obj" \
 "./main.obj" \
 "./uart_if.obj" \
 "./device/device.obj" \
@@ -126,42 +127,42 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-c2000_uart.out \
+v4.out \
 
 EXE_OUTPUTS__QUOTED += \
-"c2000_uart.out" \
+"v4.out" \
 
 BIN_OUTPUTS += \
-c2000_uart.hex \
+v4.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"c2000_uart.hex" \
+"v4.hex" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "c2000_uart.out"
+	@$(MAKE) --no-print-directory -Onone "v4.out"
 
 # Tool invocations
-c2000_uart.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+v4.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 -Ooff --advice:performance=all --define=DEBUG --define=_FLASH --define=CPU1 --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number -z -m"c2000_uart.map" --heap_size=0x50 --stack_size=0x100 --warn_sections -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="c2000_uart_linkInfo.xml" --entry_point=code_start --rom_model -o "c2000_uart.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 -Ooff --fp_mode=relaxed --advice:performance=all --define=DEBUG --define=_FLASH --define=CPU1 --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number -z -m"v4.map" --heap_size=0x50 --stack_size=0x100 --warn_sections -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="v4_linkInfo.xml" --entry_point=code_start --rom_model -o "v4.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
-c2000_uart.hex: $(EXE_OUTPUTS)
+v4.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/bin/hex2000"  -o "c2000_uart.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/bin/hex2000"  -o "v4.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "uart_if.obj" "device\device.obj" "device\f28004x_codestartbranch.obj" 
-	-$(RM) "main.d" "uart_if.d" "device\device.d" 
+	-$(RM) "MAX31855.obj" "main.obj" "uart_if.obj" "device\device.obj" "device\f28004x_codestartbranch.obj" 
+	-$(RM) "MAX31855.d" "main.d" "uart_if.d" "device\device.d" 
 	-$(RM) "device\f28004x_codestartbranch.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

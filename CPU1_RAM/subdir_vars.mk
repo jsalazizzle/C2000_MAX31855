@@ -12,27 +12,33 @@ LIB_SRCS += \
 ../driverlib.lib 
 
 C_SRCS += \
-../sci_ex1_echoback.c \
+../MAX31855.c \
+../main.c \
 ../uart_if.c 
 
 C_DEPS += \
-./sci_ex1_echoback.d \
+./MAX31855.d \
+./main.d \
 ./uart_if.d 
 
 OBJS += \
-./sci_ex1_echoback.obj \
+./MAX31855.obj \
+./main.obj \
 ./uart_if.obj 
 
 OBJS__QUOTED += \
-"sci_ex1_echoback.obj" \
+"MAX31855.obj" \
+"main.obj" \
 "uart_if.obj" 
 
 C_DEPS__QUOTED += \
-"sci_ex1_echoback.d" \
+"MAX31855.d" \
+"main.d" \
 "uart_if.d" 
 
 C_SRCS__QUOTED += \
-"../sci_ex1_echoback.c" \
+"../MAX31855.c" \
+"../main.c" \
 "../uart_if.c" 
 
 

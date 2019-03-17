@@ -41,12 +41,12 @@
 #include "device.h"
 
 #include "uart_if.h"
+#include "MAX31855.h"
 
 
 //
 // Globals
 //
-uint16_t loopCounter = 0;
 
 //
 // Main
@@ -63,7 +63,6 @@ void main(void)
     //
     Device_initGPIO();
 
-
     //
     // Initialize interrupt controller and vector table.
     //
@@ -72,6 +71,10 @@ void main(void)
 
     InitTerm();
     ClearTerm();
+
+    InitSPI();
+
+    MAX31855_readCelsius();
 
     //
     // Send starting message.

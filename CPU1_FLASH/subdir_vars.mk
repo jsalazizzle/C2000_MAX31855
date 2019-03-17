@@ -12,26 +12,32 @@ LIB_SRCS += \
 ../driverlib.lib 
 
 C_SRCS += \
+../MAX31855.c \
 ../main.c \
 ../uart_if.c 
 
 C_DEPS += \
+./MAX31855.d \
 ./main.d \
 ./uart_if.d 
 
 OBJS += \
+./MAX31855.obj \
 ./main.obj \
 ./uart_if.obj 
 
 OBJS__QUOTED += \
+"MAX31855.obj" \
 "main.obj" \
 "uart_if.obj" 
 
 C_DEPS__QUOTED += \
+"MAX31855.d" \
 "main.d" \
 "uart_if.d" 
 
 C_SRCS__QUOTED += \
+"../MAX31855.c" \
 "../main.c" \
 "../uart_if.c" 
 

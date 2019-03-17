@@ -8,7 +8,7 @@ uart_if.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stdlib.h
 uart_if.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stdlibf.h
 uart_if.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stdio.h
 uart_if.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/string.h
-uart_if.obj: C:/Users/salaz/workspace_v8/sci_ex1_echoback/device/driverlib.h
+uart_if.obj: C:/Users/salaz/workspace_v8/v4/device/driverlib.h
 uart_if.obj: C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/inc/hw_memmap.h
 uart_if.obj: C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/adc.h
 uart_if.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stdbool.h
@@ -84,7 +84,7 @@ uart_if.obj: C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/inc
 uart_if.obj: C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/spi.h
 uart_if.obj: C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/inc/hw_spi.h
 uart_if.obj: C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/version.h
-uart_if.obj: C:/Users/salaz/workspace_v8/sci_ex1_echoback/device/device.h
+uart_if.obj: C:/Users/salaz/workspace_v8/v4/device/device.h
 uart_if.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stddef.h
 uart_if.obj: ../uart_if.h
 
@@ -96,7 +96,7 @@ C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stdlib.h:
 C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stdlibf.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stdio.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/string.h: 
-C:/Users/salaz/workspace_v8/sci_ex1_echoback/device/driverlib.h: 
+C:/Users/salaz/workspace_v8/v4/device/driverlib.h: 
 C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/inc/hw_memmap.h: 
 C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/adc.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stdbool.h: 
@@ -172,6 +172,6 @@ C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/inc/hw_sdfm.h:
 C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/spi.h: 
 C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/inc/hw_spi.h: 
 C:/ti/C2000Ware_1_00_06_00_Software/driverlib/f28004x/driverlib/version.h: 
-C:/Users/salaz/workspace_v8/sci_ex1_echoback/device/device.h: 
+C:/Users/salaz/workspace_v8/v4/device/device.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include/stddef.h: 
 ../uart_if.h: 
