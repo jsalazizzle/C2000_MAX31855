@@ -4,7 +4,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.C:\Users\salaz\workspace_v8\v4\targetConfigs\TMS320F280049M.ccxml.Texas Instruments XDS110 USB Debug Probe_0/C28xx_CPU1" value="${build_artifact:v4}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.C:\Users\salaz\workspace_v8\v4\targetConfigs\TMS320F280049M.ccxml.Texas Instruments XDS110 USB Debug Probe_0/C28xx_CPU1" value="v4"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:v4}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.C:\Users\salaz\workspace_v8\v4\targetConfigs\TMS320F280049M.ccxml.Texas Instruments XDS110 USB Debug Probe_0/C28xx_CPU1" value="C:/Users\salaz\workspace_v8\v4\CPU1_FLASH\v4.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.C:\Users\salaz\workspace_v8\v4\targetConfigs\TMS320F280049M.ccxml.Texas Instruments XDS110 USB Debug Probe_0/C28xx_CPU1" value="C:/Users\salaz\workspace_v8\v4\CPU1_RAM\v4.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/v4"/>
 </listAttribute>

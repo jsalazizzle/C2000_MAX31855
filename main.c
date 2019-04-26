@@ -48,6 +48,52 @@
 // Globals
 //
 
+void initEPWM1()
+{
+
+    //
+    // Set-up TBCLK
+    //
+    EPWM_setTimeBasePeriod(EPWM1_BASE, 2U);
+    EPWM_setPhaseShift(EPWM1_BASE, 0U);
+    EPWM_setTimeBaseCounter(EPWM1_BASE, 0U);
+    EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP_DOWN);
+    EPWM_disablePhaseShiftLoad(EPWM1_BASE);
+
+    //
+    // Set ePWM clock pre-scaler
+    //
+    EPWM_setClockPrescaler(EPWM1_BASE,
+                           EPWM_CLOCK_DIVIDER_1,
+                           EPWM_HSCLOCK_DIVIDER_1);
+
+    //
+    // Set up shadowing
+    //
+    //EPWM_setCounterCompareShadowLoadMode(EPWM1_BASE,
+    //                                     EPWM_COUNTER_COMPARE_A,
+    //                                     EPWM_COMP_LOAD_ON_CNTR_ZERO);
+
+    //
+    // Set-up compare
+    //
+    EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, 1U);
+
+    //
+    // Set actions
+    //
+    EPWM_setActionQualifierAction(EPWM1_BASE,
+                                  EPWM_AQ_OUTPUT_A,
+                                  EPWM_AQ_OUTPUT_HIGH,
+                                  EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
+    EPWM_setActionQualifierAction(EPWM1_BASE,
+                                  EPWM_AQ_OUTPUT_A,
+                                  EPWM_AQ_OUTPUT_LOW,
+                                  EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
+
+    //EPWM_enableChopper(EPWM1_BASE);
+}
+
 //
 // Main
 //
@@ -63,6 +109,12 @@ void main(void)
     //
     Device_initGPIO();
 
+    GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
+    GPIO_setPinConfig(GPIO_0_EPWM1A);
+
+    GPIO_setPadConfig(2, GPIO_PIN_TYPE_STD);
+    GPIO_setPinConfig(GPIO_2_EPWM2A);
+
     //
     // Initialize interrupt controller and vector table.
     //
@@ -73,19 +125,25 @@ void main(void)
     ClearTerm();
 
     InitSPI();
+    initEPWM1();
 
     MAX31855_readCelsius();
 
     //
     // Send starting message.
     //
-    Message("\r\n\n\nHello World!\0");
     Message("\r\nYou will enter a character, and the DSP will echo it back!\r\n\n");
-    char pcBuffer[20];
+    char pcBuffer[10];
+    char pwm_compare_count = 0U;
 
     for(;;)
     {
-        GetCmd(pcBuffer, 20);
+        //GetCmd(pcBuffer, 10);
+
+        EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, pwm_compare_count++);
+        if(pwm_compare_count > 100U)
+            pwm_compare_count = 0U;
+        SysCtl_delay(80000000 / 80);
     }
 }
 
