@@ -43,57 +43,6 @@
 #include "uart_if.h"
 #include "MAX31855.h"
 
-
-//
-// Globals
-//
-
-void initEPWM1()
-{
-
-    //
-    // Set-up TBCLK
-    //
-    EPWM_setTimeBasePeriod(EPWM1_BASE, 2U);
-    EPWM_setPhaseShift(EPWM1_BASE, 0U);
-    EPWM_setTimeBaseCounter(EPWM1_BASE, 0U);
-    EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP_DOWN);
-    EPWM_disablePhaseShiftLoad(EPWM1_BASE);
-
-    //
-    // Set ePWM clock pre-scaler
-    //
-    EPWM_setClockPrescaler(EPWM1_BASE,
-                           EPWM_CLOCK_DIVIDER_1,
-                           EPWM_HSCLOCK_DIVIDER_1);
-
-    //
-    // Set up shadowing
-    //
-    //EPWM_setCounterCompareShadowLoadMode(EPWM1_BASE,
-    //                                     EPWM_COUNTER_COMPARE_A,
-    //                                     EPWM_COMP_LOAD_ON_CNTR_ZERO);
-
-    //
-    // Set-up compare
-    //
-    EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, 1U);
-
-    //
-    // Set actions
-    //
-    EPWM_setActionQualifierAction(EPWM1_BASE,
-                                  EPWM_AQ_OUTPUT_A,
-                                  EPWM_AQ_OUTPUT_HIGH,
-                                  EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
-    EPWM_setActionQualifierAction(EPWM1_BASE,
-                                  EPWM_AQ_OUTPUT_A,
-                                  EPWM_AQ_OUTPUT_LOW,
-                                  EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
-
-    //EPWM_enableChopper(EPWM1_BASE);
-}
-
 //
 // Main
 //
@@ -109,41 +58,30 @@ void main(void)
     //
     Device_initGPIO();
 
-    GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
-    GPIO_setPinConfig(GPIO_0_EPWM1A);
-
-    GPIO_setPadConfig(2, GPIO_PIN_TYPE_STD);
-    GPIO_setPinConfig(GPIO_2_EPWM2A);
-
     //
     // Initialize interrupt controller and vector table.
     //
     Interrupt_initModule();
     Interrupt_initVectorTable();
 
+    // Initialze UART to print to terminal
     InitTerm();
     ClearTerm();
 
+    // Initialize SPI for use with thermocouple
     InitSPI();
-    initEPWM1();
-
-    MAX31855_readCelsius();
 
     //
     // Send starting message.
     //
-    Message("\r\nYou will enter a character, and the DSP will echo it back!\r\n\n");
-    char pcBuffer[10];
-    char pwm_compare_count = 0U;
+    Message("\r\nThis program will read the temperature in half-second intervals!\r\n\n");
+    double temp;
 
     for(;;)
     {
-        //GetCmd(pcBuffer, 10);
-
-        EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, pwm_compare_count++);
-        if(pwm_compare_count > 100U)
-            pwm_compare_count = 0U;
-        SysCtl_delay(80000000 / 80);
+        temp = MAX31855_readCelsius();
+        Report("The current temperature is %f degrees farenheit",temp);
+        DEVICE_DELAY_US(500000); // wait 0.5 seconds before each reading
     }
 }
 
